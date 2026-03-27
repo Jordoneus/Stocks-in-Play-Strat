@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Momentum + Smart Money Concepts — Trading Flowchart</title>
+<style>
+  :root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    --bg-info: #e8f0fe;
+    --bg-warning: #fff8e1;
+    --bg-success: #e8f5e9;
+    --bg-danger: #fce8e8;
+    --text-primary: #1a1a1a;
+    --text-secondary: #5f5f5f;
+    --text-tertiary: #9e9e9e;
+    --text-info: #1a56db;
+    --text-warning: #b45309;
+    --text-success: #166534;
+    --text-danger: #991b1b;
+    --border-tertiary: rgba(0,0,0,0.12);
+    --border-secondary: rgba(0,0,0,0.22);
+    --border-info: #3b82f6;
+    --border-success: #16a34a;
+    --border-warning: #d97706;
+    --border-danger: #dc2626;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg-primary: #1e1e1e;
+      --bg-secondary: #2a2a2a;
+      --bg-info: #1e2a42;
+      --bg-warning: #2a2210;
+      --bg-success: #142a1a;
+      --bg-danger: #2a1414;
+      --text-primary: #e8e8e8;
+      --text-secondary: #a0a0a0;
+      --text-tertiary: #666666;
+      --text-info: #7aadff;
+      --text-warning: #fbbf24;
+      --text-success: #4ade80;
+      --text-danger: #f87171;
+      --border-tertiary: rgba(255,255,255,0.10);
+      --border-secondary: rgba(255,255,255,0.18);
+      --border-info: #3b82f6;
+      --border-success: #16a34a;
+      --border-warning: #d97706;
+      --border-danger: #dc2626;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 13px;
+    line-height: 1.5;
+    padding: 32px 24px 48px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  header {
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 0.5px solid var(--border-tertiary);
+  }
+  header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  header p {
+    font-size: 12px;
+    color: var(--text-tertiary);
+  }
+
+  .ph {
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .ph-label { font-weight: 600; font-size: 13px; letter-spacing: 0.03em; }
+  .ph-time { font-size: 11px; opacity: .85; }
+  .ph-pre { background: var(--bg-info); color: var(--text-info); }
+  .ph-open { background: var(--bg-warning); color: var(--text-warning); }
+  .ph-smc { background: var(--bg-secondary); border: 0.5px solid var(--border-info); color: var(--text-info); }
+  .ph-mgmt { background: var(--bg-secondary); border: 0.5px solid var(--border-tertiary); color: var(--text-primary); }
+
+  .row3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
+  .row2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 8px; }
+
+  .card {
+    background: var(--bg-secondary);
+    border: 0.5px solid var(--border-tertiary);
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+  }
+  .card-t { font-weight: 600; font-size: 12px; margin-bottom: 6px; }
+  .card-b { font-size: 11px; color: var(--text-secondary); line-height: 1.6; }
+
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin: 2px 2px 2px 0;
+    font-weight: 600;
+  }
+  .tag-i { background: var(--bg-info); color: var(--text-info); }
+  .tag-w { background: var(--bg-warning); color: var(--text-warning); }
+  .tag-s { background: var(--bg-success); color: var(--text-success); }
+  .tag-d { background: var(--bg-danger); color: var(--text-danger); }
+  .tag-g { background: var(--bg-primary); color: var(--text-secondary); border: 0.5px solid var(--border-secondary); }
+
+  .kl {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 10px;
+    padding: 10px 12px;
+    background: var(--bg-secondary);
+    border: 0.5px solid var(--border-tertiary);
+    border-radius: var(--radius-md);
+  }
+  .kl-lbl { font-size: 11px; font-weight: 600; color: var(--text-secondary); width: 100%; margin-bottom: 4px; }
+
+  .arr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 4px 0;
+  }
+  .arr-l { width: 1.5px; height: 18px; background: var(--border-secondary); }
+  .arr-h {
+    width: 0; height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 7px solid var(--border-secondary);
+  }
+
+  .pill-w { text-align: center; margin: 2px 0; }
+  .pill {
+    display: inline-flex;
+    background: var(--bg-primary);
+    border: 0.5px solid var(--border-secondary);
+    border-radius: 14px;
+    padding: 4px 20px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .smc-strip {
+    border-left: 3px solid;
+    padding: 10px 12px;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    background: var(--bg-secondary);
+    margin-bottom: 0;
+  }
+  .s-b { border-color: var(--border-info); }
+  .s-g { border-color: var(--border-success); }
+  .s-w { border-color: var(--border-warning); }
+  .s-d { border-color: var(--border-danger); }
+
+  .bias-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 4px 0 6px;
+    padding: 6px;
+  }
+  .bias-lbl-long { font-size: 11px; font-weight: 600; color: var(--text-success); }
+  .bias-lbl-short { font-size: 11px; font-weight: 600; color: var(--text-danger); }
+  .bias-box {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-md);
+    padding: 7px 22px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 10px; }
+
+  .long-card {
+    border: 1px solid var(--border-success);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    background: var(--bg-success);
+  }
+  .short-card {
+    border: 1px solid var(--border-danger);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    background: var(--bg-danger);
+  }
+
+  .lt { font-weight: 600; font-size: 12px; color: var(--text-success); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .st { font-weight: 600; font-size: 12px; color: var(--text-danger); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+
+  .dot-s { width: 5px; height: 5px; border-radius: 50%; background: var(--text-success); flex-shrink: 0; margin-top: 5px; }
+  .dot-d { width: 5px; height: 5px; border-radius: 50%; background: var(--text-danger); flex-shrink: 0; margin-top: 5px; }
+
+  .ci {
+    font-size: 11px;
+    color: var(--text-secondary);
+    padding: 3px 0;
+    border-bottom: 0.5px solid var(--border-tertiary);
+    display: flex;
+    gap: 7px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .ci:last-child { border: none; }
+
+  .note {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    text-align: center;
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 0.5px solid var(--border-tertiary);
+  }
+
+  .section-gap { margin-top: 6px; }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 14px;
+    border-top: 0.5px solid var(--border-tertiary);
+    font-size: 11px;
+    color: var(--text-tertiary);
+    text-align: center;
+  }
+
+  @media (max-width: 520px) {
+    .row3 { grid-template-columns: 1fr; }
+    .row2 { grid-template-columns: 1fr; }
+    .split { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Momentum + Smart Money Concepts — Daily Trading System</h1>
+  <p>Pre-market prep → open read → SMC signal detection → long &amp; short setups → trade management</p>
+</header>
+
+<!-- PHASE 1 -->
+<div class="ph ph-pre">
+  <span class="ph-label">PRE-MARKET PREP</span>
+  <span class="ph-time">6:00 AM – 9:29 AM EST</span>
+</div>
+
+<div class="row3">
+  <div class="card">
+    <div class="card-t" style="color:var(--text-info)">Gap + Catalyst Screen</div>
+    <div class="card-b">
+      <span class="tag tag-i">% Change &gt;5%</span>
+      <span class="tag tag-i">Gap &gt;10% ideal</span>
+      <div style="margin-top:6px">Needs a real catalyst — earnings beat, FDA, merger, short squeeze. No catalyst = no play. Gap without news is a trap.</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-t" style="color:var(--text-info)">Float Screen</div>
+    <div class="card-b">
+      <span class="tag tag-i">Float &lt;20M best</span>
+      <span class="tag tag-i">Price $2–$50</span>
+      <div style="margin-top:6px">Low float = fewer shares = explosive moves. High float plays still work but need massive relative volume to move.</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-t" style="color:var(--text-info)">Volume + ATR</div>
+    <div class="card-b">
+      <span class="tag tag-i">Pre-mkt Vol &gt;500K</span>
+      <span class="tag tag-i">ATR &gt;$0.50</span>
+      <div style="margin-top:6px">ATR is your range blueprint. Drives stop size and targets before the bell. No ATR = no defined edge, skip it.</div>
+    </div>
+  </div>
+</div>
+
+<div class="kl">
+  <div class="kl-lbl">Mark on chart before open — SMC key levels:</div>
+  <span class="tag tag-g">Prev Day High</span>
+  <span class="tag tag-g">Prev Day Low</span>
+  <span class="tag tag-g">Overnight High</span>
+  <span class="tag tag-g">Overnight Low</span>
+  <span class="tag tag-i">Key Swing OBs</span>
+  <span class="tag tag-i">Open FVGs</span>
+  <span class="tag tag-i">EQH / EQL</span>
+  <span class="tag tag-w">VWAP anchor</span>
+</div>
+
+<div class="arr"><div class="arr-l"></div><div class="arr-h"></div></div>
+<div class="pill-w"><div class="pill">Watchlist Confirmed ✓</div></div>
+<div class="arr"><div class="arr-l"></div><div class="arr-h"></div></div>
+
+<!-- PHASE 2 -->
+<div class="ph ph-open section-gap">
+  <span class="ph-label">MARKET OPEN — PRICE DISCOVERY</span>
+  <span class="ph-time">9:30 – 9:33 AM</span>
+</div>
+
+<div class="row3">
+  <div class="card">
+    <div class="card-t" style="color:var(--text-warning)">First 1–3 Candles</div>
+    <div class="card-b">
+      <span class="tag tag-w">Hands off</span>
+      <span class="tag tag-w">Observe only</span>
+      <div style="margin-top:6px">Let algos and retail shake out. The opening range high and low become your bias anchors. Being early is the same as being wrong.</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-t" style="color:var(--text-warning)">Relative Volume</div>
+    <div class="card-b">
+      <span class="tag tag-w">RelVol &gt;2x</span>
+      <span class="tag tag-s">Spike = confirmed</span>
+      <span class="tag tag-d">Low vol = skip</span>
+      <div style="margin-top:6px">Volume is your conviction filter. Weak RelVol means smart money is absent. Without them, the move dies. Walk away.</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-t" style="color:var(--text-warning)">Gap Behavior</div>
+    <div class="card-b">
+      <span class="tag tag-s">Holding = bull bias</span>
+      <span class="tag tag-d">Fading = bear bias</span>
+      <div style="margin-top:6px">Holding above the pre-mkt low = buyers in control. Undercutting that low with volume = distribution. Tells you which side to trade.</div>
+    </div>
+  </div>
+</div>
+
+<div class="arr"><div class="arr-l"></div><div class="arr-h"></div></div>
+
+<!-- PHASE 3 -->
+<div class="ph ph-smc section-gap">
+  <span class="ph-label">SMC SIGNAL DETECTION</span>
+  <span class="ph-time">Internal 5-bar structure = primary signal layer</span>
+</div>
+
+<div class="row2" style="margin-bottom:10px">
+  <div class="smc-strip s-b">
+    <div class="card-t" style="color:var(--text-info)">Internal CHoCH — First Signal</div>
+    <div class="card-b">Close above/below an internal swing level. Earliest bias shift signal — spotted before the swing structure breaks. Only trade on CHoCH alone if volume and gap direction align. Otherwise wait for BOS.</div>
+  </div>
+  <div class="smc-strip s-g">
+    <div class="card-t" style="color:var(--text-success)">BOS — Directional Confirmation</div>
+    <div class="card-b">Clean close above a swing high (or below swing low) confirms the move. Swing BOS with RelVol spike is the highest probability signal in this playbook. This is your green light.</div>
+  </div>
+</div>
+<div class="row2">
+  <div class="smc-strip s-w">
+    <div class="card-t" style="color:var(--text-warning)">Order Block — Precision Entry Zone</div>
+    <div class="card-b">After BOS, price retraces to the last opposing candle before the break — that is your OB. Bullish OB = base of the last up candle. Entry here gives the tightest stop and best R:R of the setup.</div>
+  </div>
+  <div class="smc-strip s-d">
+    <div class="card-t" style="color:var(--text-danger)">Fair Value Gap — Support, Target, S/R</div>
+    <div class="card-b">Bullish FVG below price = hard floor, add to it. Bearish FVG above = magnet target. In the first 60 min, price almost always returns to nearby FVGs. They are not decoration — they are destinations.</div>
+  </div>
+</div>
+
+<div class="arr"><div class="arr-l"></div><div class="arr-h"></div></div>
+
+<div class="bias-row">
+  <span class="bias-lbl-long">↙ LONG</span>
+  <div class="bias-box">ALL CONDITIONS ALIGNED?</div>
+  <span class="bias-lbl-short">SHORT ↘</span>
+</div>
+
+<div class="arr"><div class="arr-l" style="height:8px"></div></div>
+
+<!-- SETUPS -->
+<div class="split">
+  <div class="long-card">
+    <div class="lt">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--text-success);flex-shrink:0"></div>
+      LONG SETUP — BUY
+    </div>
+    <div class="ci"><div class="dot-s"></div><span>Gap up &gt;5–10% with real catalyst holding</span></div>
+    <div class="ci"><div class="dot-s"></div><span>Float &lt;50M, pre-mkt vol &gt;500K</span></div>
+    <div class="ci"><div class="dot-s"></div><span>Internal bullish CHoCH confirmed</span></div>
+    <div class="ci"><div class="dot-s"></div><span>Swing BOS above opening range high</span></div>
+    <div class="ci"><div class="dot-s"></div><span>RelVol &gt;2x — buyers showing up</span></div>
+    <div class="ci"><div class="dot-s"></div><span>Retrace into bullish demand OB</span></div>
+    <div class="ci"><div class="dot-s"></div><span>Bullish FVG below = hard floor</span></div>
+    <div class="ci"><div class="dot-s"></div><span>Entry: top of OB zone</span></div>
+    <div class="ci"><div class="dot-s"></div><span>Stop: below OB or FVG low</span></div>
+    <div class="ci"><div class="dot-s"></div><span>Target 1: 0.75× ATR — scale 50%</span></div>
+    <div class="ci"><div class="dot-s"></div><span>Target 2: 1.5× ATR or next FVG above</span></div>
+  </div>
+  <div class="short-card">
+    <div class="st">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--text-danger);flex-shrink:0"></div>
+      SHORT SETUP — SELL
+    </div>
+    <div class="ci"><div class="dot-d"></div><span>Gap fade or gap down with real volume</span></div>
+    <div class="ci"><div class="dot-d"></div><span>Extended move, overcooked vs ATR</span></div>
+    <div class="ci"><div class="dot-d"></div><span>Internal bearish CHoCH confirmed</span></div>
+    <div class="ci"><div class="dot-d"></div><span>Swing BOS below opening range low</span></div>
+    <div class="ci"><div class="dot-d"></div><span>RelVol &gt;2x — sellers are active</span></div>
+    <div class="ci"><div class="dot-d"></div><span>Rejection from bearish supply OB</span></div>
+    <div class="ci"><div class="dot-d"></div><span>Bearish FVG above = hard ceiling</span></div>
+    <div class="ci"><div class="dot-d"></div><span>Entry: bottom of OB zone</span></div>
+    <div class="ci"><div class="dot-d"></div><span>Stop: above OB or FVG high</span></div>
+    <div class="ci"><div class="dot-d"></div><span>Target 1: 0.75× ATR — scale 50%</span></div>
+    <div class="ci"><div class="dot-d"></div><span>Target 2: 1.5× ATR or next FVG below</span></div>
+  </div>
+</div>
+
+<div class="arr"><div class="arr-l"></div><div class="arr-h"></div></div>
+
+<!-- TRADE MANAGEMENT -->
+<div class="ph ph-mgmt section-gap">
+  <span class="ph-label">TRADE MANAGEMENT</span>
+  <span class="ph-time">Active position — protect the win</span>
+</div>
+
+<div class="row3">
+  <div class="card">
+    <div class="card-t">Scale Out Plan</div>
+    <div class="card-b">Take 50% at Target 1. Move stop to breakeven immediately. Let the runner go to Target 2 or next FVG. Never let a winner reverse into a full loss — that is a discipline failure.</div>
+  </div>
+  <div class="card">
+    <div class="card-t">Invalidation Rules</div>
+    <div class="card-b">OB violated on a close = full exit. Volume collapses = cut size fast. Price closes back inside the supporting FVG = the thesis is gone. Exit clean, no hoping.</div>
+  </div>
+  <div class="card">
+    <div class="card-t">Time Rule</div>
+    <div class="card-b">No meaningful move within 10–15 min = reduce or exit. Valid momentum trades are violent and immediate. A slow grind means wrong read or wrong timing. Move on and reset.</div>
+  </div>
+</div>
+
+<div class="note">Momentum + Smart Money Concepts — First-Hour Trading System</div>
+
+<footer>
+  For educational purposes only. Not financial advice. Always manage risk independently.
+</footer>
+
+</body>
+</html>
